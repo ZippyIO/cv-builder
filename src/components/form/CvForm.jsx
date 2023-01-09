@@ -16,13 +16,15 @@ class CvForm extends Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        this.setState({
-            general: {
-                name: event.target.name.value,
-                email: event.target.email.value,
-                phone: event.target.phone.value,
-            },
-        });
+        if (event.target.id === 'generalForm') {
+            this.setState({
+                general: {
+                    name: event.target.name.value,
+                    email: event.target.email.value,
+                    phone: event.target.phone.value,
+                },
+            });
+        }
     };
 
     render() {
@@ -30,9 +32,9 @@ class CvForm extends Component {
             <div>
                 <GeneralForm onSubmitForm={this.handleFormSubmit} />
                 <div>
-                    <p>{this.state.general.name}</p>
-                    <p>{this.state.general.email}</p>
-                    <p>{this.state.general.phone}</p>
+                    <p>Name: {this.state.general.name}</p>
+                    <p>Email: {this.state.general.email}</p>
+                    <p>Phone: {this.state.general.phone}</p>
                 </div>
             </div>
         );
