@@ -44,16 +44,47 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #18181b;
 }
 
 #educationForm {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #18181b;
 }
 
 #practicalForm {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #18181b;
+}
+
+#app {
+    display: flex;
+    gap: 50px;
+}
+
+#cv-forms {
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    gap: 20px;
+    padding: 20px 20px;
+    background-color: #1f1f22;
+    color: #f5f5f5;
+}
+
+#cv-forms > form > button {
+    margin-top: 10px;
+    background-color: #2563eb;
 }
