@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EducationForm from './EducationForm';
 import GeneralForm from './GeneralForm';
+import PracticalForm from './PracticalForm';
 
 class CvForm extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class CvForm extends Component {
                 phone: '',
             },
             education: [],
+            practical: [],
         };
     }
 
@@ -37,6 +39,19 @@ class CvForm extends Component {
                     },
                 ],
             }));
+        } else if (event.target.id === 'practicalForm') {
+            this.setState((prevState) => ({
+                practical: [
+                    ...prevState.practical,
+                    {
+                        company: event.target.pracCompany.value,
+                        position: event.target.pracPosition.value,
+                        description: event.target.pracDescription.value,
+                        startDate: event.target.pracStartDate.value,
+                        endDate: event.target.pracEndDate.value,
+                    },
+                ],
+            }));
         }
     };
 
@@ -45,6 +60,7 @@ class CvForm extends Component {
             <div>
                 <GeneralForm onSubmitForm={this.handleFormSubmit} />
                 <EducationForm onSubmitForm={this.handleFormSubmit} />
+                <PracticalForm onSubmitForm={this.handleFormSubmit} />
                 <div>
                     <h3>General</h3>
                     <p>Name: {this.state.general.name}</p>
@@ -57,6 +73,20 @@ class CvForm extends Component {
                                 <p>School: {obj.school}</p>
                                 <p>Study: {obj.study}</p>
                                 <p>Date: {obj.date}</p>
+                            </div>
+                        );
+                    })}
+                    <h3>Practical</h3>
+                    {this.state.practical.map((obj, index) => {
+                        return (
+                            <div
+                                key={`${obj.company}_${obj.position}_${obj.startDate}_${obj.endDate}`}
+                            >
+                                <p>Company: {obj.company}</p>
+                                <p>Position: {obj.position}</p>
+                                <p>Description: {obj.description}</p>
+                                <p>Start Date: {obj.startDate}</p>
+                                <p>End Date: {obj.endDate}</p>
                             </div>
                         );
                     })}
