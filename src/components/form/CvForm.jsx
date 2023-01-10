@@ -6,91 +6,14 @@ import PracticalForm from './PracticalForm';
 class CvForm extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            general: {
-                name: '',
-                email: '',
-                phone: '',
-            },
-            education: [],
-            practical: [],
-        };
     }
-
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-        if (event.target.id === 'generalForm') {
-            this.setState({
-                general: {
-                    name: event.target.name.value,
-                    email: event.target.email.value,
-                    phone: event.target.phone.value,
-                },
-            });
-        } else if (event.target.id === 'educationForm') {
-            this.setState((prevState) => ({
-                education: [
-                    ...prevState.education,
-                    {
-                        school: event.target.eduSchool.value,
-                        study: event.target.eduStudy.value,
-                        date: event.target.eduDate.value,
-                    },
-                ],
-            }));
-        } else if (event.target.id === 'practicalForm') {
-            this.setState((prevState) => ({
-                practical: [
-                    ...prevState.practical,
-                    {
-                        company: event.target.pracCompany.value,
-                        position: event.target.pracPosition.value,
-                        description: event.target.pracDescription.value,
-                        startDate: event.target.pracStartDate.value,
-                        endDate: event.target.pracEndDate.value,
-                    },
-                ],
-            }));
-        }
-    };
 
     render() {
         return (
-            <div>
-                <GeneralForm onSubmitForm={this.handleFormSubmit} />
-                <EducationForm onSubmitForm={this.handleFormSubmit} />
-                <PracticalForm onSubmitForm={this.handleFormSubmit} />
-                <div>
-                    <h3>General</h3>
-                    <p>Name: {this.state.general.name}</p>
-                    <p>Email: {this.state.general.email}</p>
-                    <p>Phone: {this.state.general.phone}</p>
-                    <h3>Education</h3>
-                    {this.state.education.map((obj, index) => {
-                        return (
-                            <div key={`${obj.school}_${obj.study}_${obj.date}`}>
-                                <p>School: {obj.school}</p>
-                                <p>Study: {obj.study}</p>
-                                <p>Date: {obj.date}</p>
-                            </div>
-                        );
-                    })}
-                    <h3>Practical</h3>
-                    {this.state.practical.map((obj, index) => {
-                        return (
-                            <div
-                                key={`${obj.company}_${obj.position}_${obj.startDate}_${obj.endDate}`}
-                            >
-                                <p>Company: {obj.company}</p>
-                                <p>Position: {obj.position}</p>
-                                <p>Description: {obj.description}</p>
-                                <p>Start Date: {obj.startDate}</p>
-                                <p>End Date: {obj.endDate}</p>
-                            </div>
-                        );
-                    })}
-                </div>
+            <div id="cv-forms">
+                <GeneralForm onSubmitForm={this.props.formSubmit} />
+                <EducationForm onSubmitForm={this.props.formSubmit} />
+                <PracticalForm onSubmitForm={this.props.formSubmit} />
             </div>
         );
     }
