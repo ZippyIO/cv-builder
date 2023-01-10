@@ -8,11 +8,7 @@ class EducationForm extends Component {
     render() {
         return (
             <div>
-                <form
-                    id="educationForm"
-                    className="educationForm"
-                    onSubmit={this.props.onSubmitForm}
-                >
+                <form id="educationForm" onSubmit={this.props.onSubmitForm}>
                     <label htmlFor="eduSchool">School:</label>
                     <input type="text" id="eduSchool" onChange={this.handleInput} />
                     <label htmlFor="eduStudy">Title of Study:</label>

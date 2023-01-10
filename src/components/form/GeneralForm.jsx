@@ -8,7 +8,7 @@ class GeneralForm extends Component {
     render() {
         return (
             <div>
-                <form id="generalForm" className="generalForm" onSubmit={this.props.onSubmitForm}>
+                <form id="generalForm" onSubmit={this.props.onSubmitForm}>
                     <label htmlFor="name">Name:</label>
                     <input type="text" id="name" />
                     <label htmlFor="email">Email:</label>
