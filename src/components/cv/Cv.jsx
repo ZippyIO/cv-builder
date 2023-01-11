@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../../styles/cv.css';
 
 class Cv extends Component {
     constructor(props) {
@@ -10,32 +11,39 @@ class Cv extends Component {
 
         return (
             <div id="cv">
-                <h3>General</h3>
-                <p>Name: {data.general.name}</p>
-                <p>Email: {data.general.email}</p>
-                <p>Phone: {data.general.phone}</p>
-                <h3>Education</h3>
-                {data.education.map((obj, index) => {
-                    return (
-                        <div key={`${obj.school}_${obj.study}_${obj.date}`}>
-                            <p>School: {obj.school}</p>
-                            <p>Study: {obj.study}</p>
-                            <p>Date: {obj.date}</p>
-                        </div>
-                    );
-                })}
-                <h3>Practical</h3>
-                {data.practical.map((obj, index) => {
-                    return (
-                        <div key={`${obj.company}_${obj.position}_${obj.startDate}_${obj.endDate}`}>
-                            <p>Company: {obj.company}</p>
-                            <p>Position: {obj.position}</p>
-                            <p>Description: {obj.description}</p>
-                            <p>Start Date: {obj.startDate}</p>
-                            <p>End Date: {obj.endDate}</p>
-                        </div>
-                    );
-                })}
+                <div id="cv-general">
+                    <p>Name: {data.general.name}</p>
+                    <p>Email: {data.general.email}</p>
+                    <p>Phone: {data.general.phone}</p>
+                </div>
+                <div id="cv-education">
+                    <h3>Education</h3>
+                    {data.education.map((obj) => {
+                        return (
+                            <div key={`${obj.school}_${obj.study}_${obj.date}`}>
+                                <p>School: {obj.school}</p>
+                                <p>Study: {obj.study}</p>
+                                <p>Date: {obj.date}</p>
+                            </div>
+                        );
+                    })}
+                </div>
+                <div id="cv-practical">
+                    <h3>Practical</h3>
+                    {data.practical.map((obj) => {
+                        return (
+                            <div
+                                key={`${obj.company}_${obj.position}_${obj.startDate}_${obj.endDate}`}
+                            >
+                                <p>Company: {obj.company}</p>
+                                <p>Position: {obj.position}</p>
+                                <p>Description: {obj.description}</p>
+                                <p>Start Date: {obj.startDate}</p>
+                                <p>End Date: {obj.endDate}</p>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         );
     }

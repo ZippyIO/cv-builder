@@ -1,0 +1,39 @@
+#cv {
+    display: grid;
+    grid-template-columns: 240px 400px;
+    grid-template-rows: 90px 850px;
+}
+
+#cv > div > h3 {
+    margin: 0;
+}
+
+#cv > div > p {
+    margin: 0;
+}
+
+#cv-general {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: #1f1f22;
+}
+
+#cv-education {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: #0284c7;
+}
+
+#cv-practical {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background-color: #18181b;
+}
+
+.btn-cvedit {
+    width: 100px;
+    height: 40px;
+    font-size: 8px;
+}
