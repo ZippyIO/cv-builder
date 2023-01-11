@@ -32,8 +32,10 @@
     background-color: #18181b;
 }
 
-.btn-cvedit {
-    width: 100px;
-    height: 40px;
-    font-size: 8px;
+.edu-item {
+    background-color: #027ab6;
+}
+
+.prac-item {
+    background-color: #101012;
 }

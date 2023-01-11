@@ -20,7 +20,10 @@ class Cv extends Component {
                     <h3>Education</h3>
                     {data.education.map((obj) => {
                         return (
-                            <div key={`${obj.school}_${obj.study}_${obj.date}`}>
+                            <div
+                                className="edu-item"
+                                key={`${obj.school}_${obj.study}_${obj.date}`}
+                            >
                                 <p>School: {obj.school}</p>
                                 <p>Study: {obj.study}</p>
                                 <p>Date: {obj.date}</p>
@@ -33,6 +36,7 @@ class Cv extends Component {
                     {data.practical.map((obj) => {
                         return (
                             <div
+                                className="prac-item"
                                 key={`${obj.company}_${obj.position}_${obj.startDate}_${obj.endDate}`}
                             >
                                 <p>Company: {obj.company}</p>
