@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: 240px 400px;
     grid-template-rows: 90px 850px;
+    height: 940px;
+    width: 640px;
 }
 
 #cv > div > h3 {

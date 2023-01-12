@@ -1,100 +1,79 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
-class PracticalForm extends Component {
-    constructor(props) {
-        super(props);
+const PracticalForm = (props) => {
+    const [current, setCurrent] = useState(0);
+    const [company, setCompany] = useState('');
+    const [position, setPosition] = useState('');
+    const [description, setDescription] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
 
-        this.state = {
-            current: 0,
-            company: '',
-            position: '',
-            description: '',
-            startDate: '',
-            endDate: '',
-        };
-    }
+    const [...data] = props.cvData;
+    const key = `${company}_${position}_${startDate}_${endDate}`;
 
-    updateIndex = (event) => {
-        this.setState({
-            current: event.target.valueAsNumber,
-            company: this.props.cvData[event.target.valueAsNumber].company,
-            position: this.props.cvData[event.target.valueAsNumber].position,
-            description: this.props.cvData[event.target.valueAsNumber].description,
-            startDate: this.props.cvData[event.target.valueAsNumber].startDate,
-            endDate: this.props.cvData[event.target.valueAsNumber].endDate,
-        });
-    };
+    useEffect(() => {
+        setCurrent(data.length);
+    }, [data.length]);
 
-    submitFormIndex = (event) => {
-        this.setState(
-            {
-                current: event.target.pracIndex.valueAsNumber,
-            },
-            () => this.props.onSubmitForm(event),
+    const updateIndex = (event) => {
+        setCurrent(event.target.valueAsNumber);
+        setCompany(
+            data[event.target.valueAsNumber] ? data[event.target.valueAsNumber].company : '',
+        );
+        setPosition(
+            data[event.target.valueAsNumber] ? data[event.target.valueAsNumber].position : '',
+        );
+        setDescription(
+            data[event.target.valueAsNumber] ? data[event.target.valueAsNumber].description : '',
+        );
+        setStartDate(
+            data[event.target.valueAsNumber] ? data[event.target.valueAsNumber].startDate : '',
+        );
+        setEndDate(
+            data[event.target.valueAsNumber] ? data[event.target.valueAsNumber].endDate : '',
         );
     };
 
-    render() {
-        const key = `
-        ${this.state.company}_${this.state.position}_
-        ${this.state.startDate}_${this.state.endDate}`;
-        const [...data] = this.props.cvData;
-
-        if (this.props.edit) {
-            return (
-                <form
-                    id="practicalForm"
-                    data-index={this.state.current}
-                    onSubmit={this.submitFormIndex}
-                >
-                    <label htmlFor="pracCompany">Company:</label>
-                    <input
-                        type="text"
-                        id="pracCompany"
-                        defaultValue={this.state.company}
-                        key={`Company:${key}`}
-                    />
-                    <label htmlFor="pracPosition">Position:</label>
-                    <input
-                        type="text"
-                        id="pracPosition"
-                        defaultValue={this.state.position}
-                        key={`Position:${key}`}
-                    />
-                    <label htmlFor="pracDescription">Description:</label>
-                    <input
-                        type="text"
-                        id="pracDescription"
-                        defaultValue={this.state.description}
-                        key={`Description:${key}`}
-                    />
-                    <label htmlFor="pracStartDate">Start Date:</label>
-                    <input
-                        type="text"
-                        id="pracStartDate"
-                        defaultValue={this.state.startDate}
-                        key={`StartDate:${key}`}
-                    />
-                    <label htmlFor="pracEndDate">End Date:</label>
-                    <input
-                        type="text"
-                        id="pracEndDate"
-                        defaultValue={this.state.endDate}
-                        key={`EndDate:${key}`}
-                    />
-                    <input
-                        type="number"
-                        id="pracIndex"
-                        onChange={this.updateIndex}
-                        min="0"
-                        max={data.length}
-                        defaultValue={data.length}
-                    />
-                    <button type="submit">Add Practical Experience</button>
-                </form>
-            );
-        }
+    if (props.edit) {
+        return (
+            <form id="practicalForm" data-index={current} onSubmit={props.onSubmitForm}>
+                <label htmlFor="pracCompany">Company:</label>
+                <input type="text" id="pracCompany" defaultValue={company} key={`Company:${key}`} />
+                <label htmlFor="pracPosition">Position:</label>
+                <input
+                    type="text"
+                    id="pracPosition"
+                    defaultValue={position}
+                    key={`Position:${key}`}
+                />
+                <label htmlFor="pracDescription">Description:</label>
+                <input
+                    type="text"
+                    id="pracDescription"
+                    defaultValue={description}
+                    key={`Description:${key}`}
+                />
+                <label htmlFor="pracStartDate">Start Date:</label>
+                <input
+                    type="text"
+                    id="pracStartDate"
+                    defaultValue={startDate}
+                    key={`StartDate:${key}`}
+                />
+                <label htmlFor="pracEndDate">End Date:</label>
+                <input type="text" id="pracEndDate" defaultValue={endDate} key={`EndDate:${key}`} />
+                <input
+                    type="number"
+                    id="pracIndex"
+                    onChange={updateIndex}
+                    min="0"
+                    max={data.length}
+                    defaultValue={data.length}
+                />
+                <button type="submit">Add Practical Experience</button>
+            </form>
+        );
     }
-}
+};
 
 export default PracticalForm;
